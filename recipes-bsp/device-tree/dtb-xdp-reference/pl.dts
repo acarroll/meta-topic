@@ -338,6 +338,7 @@
 			};
 
 			mipi_cam_0_ss: v_proc_ss@a00b0000 {
+				#dma-cells = <1>;
 				compatible = "xlnx,v-vpss-csc";
 				clock-names = "aclk";
 				clocks = <&misc_clk_6>;				
@@ -373,12 +374,29 @@
 						xlnx,video-width = <0x8>;
 
 						mipi_cam_0_ss_out: endpoint {
-							remote-endpoint = <&mipi_cam_0_vcap_in>;
+							remote-endpoint = <&mipi_cam_0_topic_mediactl_in>;
 						};
 					};
 				};
 			};
 
+			mipi_cam_0_topic_mediactl: topic_mediactl@0 {
+				compatible = "topic,mediactl";	
+				ports {
+					port@0 {
+						reg = <0x0>;
+						xlnx,video-format = <0x3>;
+						xlnx,video-width = <0x8>;
+
+						mipi_cam_0_topic_mediactl_in: endpoint {
+							remote-endpoint = <&mipi_cam_0_ss_out>;
+						};
+					};
+				};			
+			};
+			
+
+			/*
 			mipi_cam_0_fb: v_frmbuf_wr@a0020000 {
 				compatible = "xlnx,v-frmbuf-wr-2.1", "xlnx,axi-frmbuf-wr-v2.1";
 				#dma-cells = <1>;
@@ -420,6 +438,7 @@
 					};
 				};
 			};
+			*/
 			
 			/* MIPI Camera 1 */
 			mipi_cam_1_axi_iic: i2c@a000c000 {
@@ -626,12 +645,28 @@
 						xlnx,video-width = <0x8>;
 
 						mipi_cam_1_ss_out: endpoint {
-							remote-endpoint = <&mipi_cam_1_vcap_in>;
+							remote-endpoint = <&mipi_cam_1_topic_mediactl_in>;
 						};
 					};
 				};
 			};
 
+			mipi_cam_1_topic_mediactl: topic_mediactl@1 {
+				compatible = "topic,mediactl";	
+				ports {
+					port@0 {
+						reg = <0x0>;
+						xlnx,video-format = <0x3>;
+						xlnx,video-width = <0x8>;
+
+						mipi_cam_1_topic_mediactl_in: endpoint {
+							remote-endpoint = <&mipi_cam_1_ss_out>;
+						};
+					};
+				};			
+			};
+
+			/*
 			mipi_cam_1_fb: v_frmbuf_wr@a0030000 {
 				compatible = "xlnx,v-frmbuf-wr-2.1", "xlnx,axi-frmbuf-wr-v2.1";
 				#dma-cells = <1>;
@@ -673,6 +708,7 @@
 					};
 				};
 			};
+			*/
 						
 	
 			/* GPS IIC */
