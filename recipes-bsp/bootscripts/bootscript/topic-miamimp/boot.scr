@@ -1,4 +1,4 @@
-setenv bootargs $bootargs coherent_pool=512k
+setenv bootargs $bootargs coherent_pool=512k video=HDMI-A-1:1024x768@60
 if test "${devtype}" = "mmc"; then
 	echo "Loading kernel from mmc ${devnum}:${devplist}..."
 	if ext4load ${devtype} ${devnum}:${devplist} $fdt_addr /boot/system.dtb && ext4load ${devtype} ${devnum}:${devplist} $kernel_addr /boot/Image; then
