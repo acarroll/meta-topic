@@ -142,6 +142,11 @@
 				topic,initial-pwm = <0x0>; /* Off */
 			};
 
+			/* QDesys driver */
+			qdesys_motor_controller: qmfoc@0 {
+				compatible = "qdesys,qmfoc-1.00.a";
+			};
+
 			/* UART 16550 controller for BT */
 			axi_uart16550_0: serial@a0010000 {
 				clock-names = "ref_clk";
@@ -244,6 +249,7 @@
 				clocks = <&zynqmp_clk PL0_REF>;
 			};
 
+			/* Dyplo */
 			dyplo: dyplo@a0400000 {
 				compatible = "topic,dyplo-1.00.a";
 				reg = <0x0 0xA0400000 0x0 0x200000>;
