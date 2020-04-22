@@ -163,22 +163,6 @@
 				xlnx,use-user-ports = <0x1>;
 			};
 
-			/* HDMI output */
-
-			/* UART 16550 controller for uBlaze_hdmi */
-			axi_uart16550_ublaze_hdmi: serial@a0040000 {
-				clock-names = "ref_clk";
-				clocks = <&zynqmp_clk PL0_REF>;
-				compatible = "xlnx,xps-uart16550-2.00.a", "ns16550a";
-				current-speed = <115200>;
-				device_type = "serial";
-				interrupt-parent = <&gic>;
-				interrupts = <0 109 4>; /* pl_ps_1[5] */
-				reg = <0x0 0xA0040000 0x0 0x2000>;
-				reg-offset = <0x1000>;
-				reg-shift = <2>;
-			};
-
 			/* MIPI Camera 0 */
 			mipi_cam_0_axi_iic: i2c@a0130000 {
 				#address-cells = <1>;
@@ -392,7 +376,7 @@
 			};
 
 			/* MIPI Camera 1 */
-			mipi_cam_1_axi_iic: i2c@a0150000 {
+			mipi_cam_1_axi_iic: i2c@a01b0000 {
 				#address-cells = <1>;
 				#size-cells = <0>;
 				clock-names = "s_axi_aclk";
@@ -401,7 +385,7 @@
 				interrupt-names = "iic2intc_irpt";
 				interrupt-parent = <&gic>;
 				interrupts = <0 95 4>; 
-				reg = <0x0 0xa0150000 0x0 0x10000>;
+				reg = <0x0 0xa01b0000 0x0 0x10000>;
 
 				mipi_cam_1_imx274: sensor@1a{
 					compatible = "sony,imx274";
@@ -422,7 +406,7 @@
 				}; 
 			};
 
-			mipi_cam_1_csiss: csiss@a0110000 {
+			mipi_cam_1_csiss: csiss@a0180000 {
 				clock-names = "lite_aclk", "dphy_clk_200M", "video_aclk";
 				clocks = <&zynqmp_clk PL0_REF>, <&si5341 0 6>, <&misc_clk_6>; 
 				 
@@ -430,7 +414,7 @@
 				interrupt-names = "csirxss_csi_irq";
 				interrupt-parent = <&gic>;
 				interrupts = <0 94 4>;
-				reg = <0x0 0xa0110000 0x0 0x10000>;
+				reg = <0x0 0xa0180000 0x0 0x10000>;
 				xlnx,axis-tdata-width = <32>;
 				xlnx,cal-mode = "NONE";
 				xlnx,clk-io-swap = "false";
@@ -514,9 +498,9 @@
 				}; 
 			};
 
-			mipi_cam_1_demosaic: demosaic@a0160000 {
+			mipi_cam_1_demosaic: demosaic@a01c0000 {
 				compatible = "xlnx,v-demosaic-1.0", "xlnx,v-demosaic";
-				reg = <0x0 0xa0160000 0x0 0x10000>;
+				reg = <0x0 0xa01c0000 0x0 0x10000>;
 				clock-names = "ap_clk";
 				clocks = <&misc_clk_6>;
 				interrupt-names = "interrupt";
@@ -560,11 +544,11 @@
 				};
 			};
 
-			mipi_cam_1_ss: v_proc_ss_csc@a0120000 {
+			mipi_cam_1_ss: v_proc_ss_csc@a0040000 {
 				clock-names = "aclk";
 				clocks = <&misc_clk_6>;
 				compatible = "xlnx,v-vpss-csc";
-				reg = <0x0 0xa0120000 0x0 0x10000>;
+				reg = <0x0 0xa0040000 0x0 0x10000>;
 				reset-gpios = <&gpio 109 GPIO_ACTIVE_LOW>; 
 				xlnx,colorspace-support = <0x0>;
 				xlnx,csc-enable-window = "false";
