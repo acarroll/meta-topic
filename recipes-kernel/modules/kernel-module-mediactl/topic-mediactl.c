@@ -296,6 +296,27 @@ static int xvip_entity_start_stop(struct xvip_composite_device *xdev, struct med
 			return ret;
 		}
 
+		/* Check if the device is the IMX274 */
+		dev_dbg(xdev->dev, "subdev: (%s)\n", subdev->name);
+		if(strcmp(subdev->name,"IMX274") == 0) {
+			dev_dbg(xdev->dev, "Going to change frame interval of subdev: (%s)\n", subdev->name);
+			struct v4l2_fract fract = {
+				.numerator = 1,
+				.denominator = 60
+			};
+			struct v4l2_subdev_frame_interval ival = {
+				.interval = fract
+			};
+			ret = v4l2_subdev_call(subdev, video, s_frame_interval, &ival);
+			if (ret < 0) {
+				dev_err(xdev->dev,
+					"s_frame_interval on failed on subdev\n");
+				xvip_subdev_set_streaming(xdev, subdev, 0);
+				return ret;
+			}
+			dev_dbg(xdev->dev, "Changing frame interval of subdev: (%s) succesfully\n", subdev->name);
+		}
+
 		/* stream-on subdevice */
 		ret = v4l2_subdev_call(subdev, video, s_stream, 1);
 		if (ret < 0 && ret != -ENOIOCTLCMD) {
@@ -566,7 +587,7 @@ static ssize_t device_read(struct file *flip, char *buffer, size_t len, loff_t *
 	list_for_each_entry_safe(temp, _temp, &g_xdev->entities, list)
 			xvip_entity_start_stop(g_xdev, temp->entity, true);
 
-	printk(KERN_ALERT "The stream hast started.\n");
+	printk(KERN_ALERT "The stream has started.\n");
  	return 0;
 }
 
