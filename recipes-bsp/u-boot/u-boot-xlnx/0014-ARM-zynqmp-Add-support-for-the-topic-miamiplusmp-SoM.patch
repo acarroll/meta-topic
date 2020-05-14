@@ -1,4 +1,4 @@
-From 8a1ae03d20e818c6f63e142fe5c7aa3d14dace1a Mon Sep 17 00:00:00 2001
+From 7d4e5fe51c8bfc3d73978ece04da18685d49d5e1 Mon Sep 17 00:00:00 2001
 From: Mike Looijmans <mike.looijmans@topic.nl>
 Date: Wed, 12 Feb 2020 11:45:06 +0100
 Subject: [PATCH 14/17] ARM: zynqmp: Add support for the topic-miamiplusmp SoM
@@ -197,7 +197,7 @@ index 0000000000..83f3567df9
 +};
 diff --git a/board/topic/zynqmp/zynqmp-topic-miamiplusmp/psu_init_gpl.c b/board/topic/zynqmp/zynqmp-topic-miamiplusmp/psu_init_gpl.c
 new file mode 100644
-index 0000000000..7c92c6e29d
+index 0000000000..35dc6d8489
 --- /dev/null
 +++ b/board/topic/zynqmp/zynqmp-topic-miamiplusmp/psu_init_gpl.c
 @@ -0,0 +1,1039 @@
@@ -626,18 +626,18 @@ index 0000000000..7c92c6e29d
 +	psu_mask_write(0xFF180074, 0x000000FEU, 0x00000040U);
 +	psu_mask_write(0xFF180078, 0x000000FEU, 0x000000C0U);
 +	psu_mask_write(0xFF18007C, 0x000000FEU, 0x000000C0U);
-+	psu_mask_write(0xFF180080, 0x000000FEU, 0x000000C0U);
-+	psu_mask_write(0xFF180084, 0x000000FEU, 0x000000C0U);
++	psu_mask_write(0xFF180080, 0x000000FEU, 0x00000000U);
++	psu_mask_write(0xFF180084, 0x000000FEU, 0x00000000U);
 +	psu_mask_write(0xFF180088, 0x000000FEU, 0x00000040U);
 +	psu_mask_write(0xFF18008C, 0x000000FEU, 0x00000040U);
 +	psu_mask_write(0xFF180090, 0x000000FEU, 0x00000000U);
 +	psu_mask_write(0xFF180094, 0x000000FEU, 0x00000000U);
-+	psu_mask_write(0xFF180098, 0x000000FEU, 0x00000080U);
-+	psu_mask_write(0xFF18009C, 0x000000FEU, 0x00000080U);
-+	psu_mask_write(0xFF1800A0, 0x000000FEU, 0x00000080U);
-+	psu_mask_write(0xFF1800A4, 0x000000FEU, 0x00000080U);
-+	psu_mask_write(0xFF1800A8, 0x000000FEU, 0x00000080U);
-+	psu_mask_write(0xFF1800AC, 0x000000FEU, 0x00000080U);
++	psu_mask_write(0xFF180098, 0x000000FEU, 0x00000000U);
++	psu_mask_write(0xFF18009C, 0x000000FEU, 0x00000000U);
++	psu_mask_write(0xFF1800A0, 0x000000FEU, 0x00000000U);
++	psu_mask_write(0xFF1800A4, 0x000000FEU, 0x00000000U);
++	psu_mask_write(0xFF1800A8, 0x000000FEU, 0x00000000U);
++	psu_mask_write(0xFF1800AC, 0x000000FEU, 0x00000000U);
 +	psu_mask_write(0xFF1800B0, 0x000000FEU, 0x00000000U);
 +	psu_mask_write(0xFF1800B4, 0x000000FEU, 0x00000010U);
 +	psu_mask_write(0xFF1800B8, 0x000000FEU, 0x00000010U);
@@ -673,7 +673,7 @@ index 0000000000..7c92c6e29d
 +	psu_mask_write(0xFF180130, 0x000000FEU, 0x000000A0U);
 +	psu_mask_write(0xFF180134, 0x000000FEU, 0x000000A0U);
 +	psu_mask_write(0xFF180204, 0xFFFFFFFFU, 0x40000000U);
-+	psu_mask_write(0xFF180208, 0xFFFFFFFFU, 0x00B02002U);
++	psu_mask_write(0xFF180208, 0xFFFFFFFFU, 0x00B02000U);
 +	psu_mask_write(0xFF18020C, 0x00003FFFU, 0x0000000BU);
 +	psu_mask_write(0xFF180138, 0x03FFFFFFU, 0x03FFFFFFU);
 +	psu_mask_write(0xFF18013C, 0x03FFFFFFU, 0x03FFFFFFU);
